@@ -4,6 +4,8 @@
 
 #include "util.h"
 #include "resources_manager.h"
+#include "collision_manager.h"
+#include "character_manager.h"
 
 bool running = true;
 
@@ -44,18 +46,22 @@ int main(int argc,char** argv) {
 
 		while (peekmessage(&msg)) {
 			//处理消息
+			CharacterManager::instance()->on_input(msg);
 		}
 
 		steady_clock::time_point frame_start = steady_clock::now();
 		duration<float> delta = duration < float>(frame_start - last_tick);
 
 		//处理更新
-
-
+		CharacterManager::instance()->on_update(delta.count());
+		CollisionManager::instance()->process_collide();
 
 		setbkcolor(RGB(0,0,0));
 		cleardevice();
+
 		draw_background();
+		CharacterManager::instance()->on_render();
+		CollisionManager::instance()->on_debug_render();
 
 		FlushBatchDraw();
 
