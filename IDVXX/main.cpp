@@ -21,6 +21,15 @@ static void draw_background() {
 	putimage_ex(img_background, &rect_dst);
 }
 
+static void draw_remain_hp(){
+	static IMAGE* img_ui_heart = ResourcesManager::instance()->find_image("ui_heart");
+	Rect rect_dst = { 0, 10, img_ui_heart->getwidth(), img_ui_heart->getheight() };
+	for (int i = 0; i < CharacterManager::instance()->get_player()->get_hp(); i++){
+		rect_dst.x = 10 + i * 40;
+		putimage_ex(img_ui_heart, &rect_dst);
+	}
+}
+
 int main(int argc,char** argv) {
 	using namespace std::chrono;
 
@@ -36,6 +45,8 @@ int main(int argc,char** argv) {
 		MessageBox(hwnd, err_msg, _T("×ÊÔ´¼ÓÔØÊ§°Ü"), MB_OK | MB_ICONERROR);
 		return -1;
 	}
+
+	play_audio(_T("bgm"), true);
 
 	const nanoseconds frame_duration(1000000000 / 144);
 	steady_clock::time_point last_tick = steady_clock::now();
@@ -64,6 +75,7 @@ int main(int argc,char** argv) {
 		draw_background();
 		CharacterManager::instance()->on_render();
 		//CollisionManager::instance()->on_debug_render();
+		draw_remain_hp();
 
 		FlushBatchDraw();
 

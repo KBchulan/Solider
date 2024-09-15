@@ -45,6 +45,18 @@
     <ClCompile Include="bullet_time_manager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="sword.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="barb.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy_state_node.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector2.h">
@@ -90,6 +102,21 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="bullet_time_manager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sword.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="barb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy_state_node.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
