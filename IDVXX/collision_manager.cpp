@@ -1,5 +1,4 @@
 #include "collision_manager.h"
-
 #include<easyx.h>
 
 CollisionManager* CollisionManager::manager = nullptr;

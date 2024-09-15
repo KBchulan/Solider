@@ -6,6 +6,7 @@
 #include "resources_manager.h"
 #include "collision_manager.h"
 #include "character_manager.h"
+#include "bullet_time_manager.h"
 
 bool running = true;
 
@@ -50,10 +51,11 @@ int main(int argc,char** argv) {
 		}
 
 		steady_clock::time_point frame_start = steady_clock::now();
-		duration<float> delta = duration < float>(frame_start - last_tick);
+		duration<float> delta = duration<float> (frame_start - last_tick);
 
 		//处理更新
-		CharacterManager::instance()->on_update(delta.count());
+		float scaled_delta = BulletTimeManager::instance()->on_update(delta.count());
+		CharacterManager::instance()->on_update(scaled_delta);
 		CollisionManager::instance()->process_collide();
 
 		setbkcolor(RGB(0,0,0));
@@ -61,7 +63,7 @@ int main(int argc,char** argv) {
 
 		draw_background();
 		CharacterManager::instance()->on_render();
-		CollisionManager::instance()->on_debug_render();
+		//CollisionManager::instance()->on_debug_render();
 
 		FlushBatchDraw();
 

@@ -69,9 +69,9 @@ private:
 private:
 	const float CD_ROLL = 0.75f;
 	const float CD_ATTACK = 0.5f;
-	const float SPEED_RUN = 300.0f;
-	const float SPEED_JUMP = 780.0f;
-	const float SPEED_ROLL = 800.0f;
+	const float SPEED_RUN = 400.0f;
+	const float SPEED_JUMP = 980.0f;
+	const float SPEED_ROLL = 1000.0f;
 
 private:
 	Timer timer_roll_cd;

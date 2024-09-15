@@ -1,7 +1,6 @@
 #include "character.h"
 #include "collision_manager.h"
 
-
 Character::Character() {
 	hit_box = CollisionManager::instance()->create_collision_box();
 	hurt_box = CollisionManager::instance()->create_collision_box();
@@ -47,8 +46,7 @@ void Character::on_update(float delta) {
 
 	position += velocity * delta;
 
-	if (position.y >= FLOOR_Y)
-	{
+	if (position.y >= FLOOR_Y){
 		position.y = FLOOR_Y;
 		velocity.y = 0;
 	}
@@ -73,7 +71,7 @@ void Character::on_update(float delta) {
 }
 
 void Character::on_render() {
-	if(!current_animation||(is_invulnerable&&is_blink_invisable))
+	if (!current_animation || (is_invulnerable && is_blink_invisable))
 		return;
 	(is_facing_left ? current_animation->left : current_animation->right).on_render();
 }

@@ -1,6 +1,7 @@
 #include "player.h"
 #include "resources_manager.h"
 #include "player_state_nodes.h"
+#include "bullet_time_manager.h"
 
 #include <cmath>
 
@@ -203,11 +204,11 @@ void Player::on_input(const ExMessage& msg) {
 		switch (msg.vkcode) {
 		case 0x41:
 		case VK_LEFT:   //A
-			is_facing_left = true;
+			is_left_key_down = true;
 			break;
 		case 0x44:		//D
 		case VK_RIGHT:
-			is_facing_left = false;
+			is_right_key_down = true;
 			break;
 		case 0x57:		//W
 		case VK_UP:
@@ -224,11 +225,11 @@ void Player::on_input(const ExMessage& msg) {
 		switch (msg.vkcode) {
 		case 0x41:
 		case VK_LEFT:   //A
-			is_facing_left = false;
+			is_left_key_down = false;
 			break;
 		case 0x44:		//D
 		case VK_RIGHT:
-			is_facing_left = false;
+			is_right_key_down = false;
 			break;
 		case 0x57:		//W
 		case VK_UP:
@@ -249,10 +250,12 @@ void Player::on_input(const ExMessage& msg) {
 		is_attack_key_down = false;
 		break;
 	case WM_RBUTTONDOWN:
-		//进入子弹时间
+		play_audio(_T("bullet_time"), false);
+		BulletTimeManager::instance()->set_status(BulletTimeManager::Status::Entering);
 		break;
 	case WM_RBUTTONUP:
-		//退出子弹时间
+		stop_audio(_T("bullet_time"));
+		BulletTimeManager::instance()->set_status(BulletTimeManager::Status::Exiting);
 		break;
 	}
 	

@@ -48,7 +48,6 @@ private:
 	CollisionLayer layer_src = CollisionLayer::None;
 	CollisionLayer layer_dst = CollisionLayer::None;
 	
-
 private:
 	CollisionBox() = default;
 	~CollisionBox() = default;
