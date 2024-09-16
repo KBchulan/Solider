@@ -1,8 +1,10 @@
 #include<easyx.h>
 #include<chrono>
 #include<thread>
+#include<iostream>
 
 #include "util.h"
+#include "camera.h"
 #include "resources_manager.h"
 #include "collision_manager.h"
 #include "character_manager.h"
@@ -12,12 +14,23 @@ bool running = true;
 
 static void draw_background() {
 	static IMAGE* img_background = ResourcesManager::instance()->find_image("background");
-	static Rect rect_dst = {
-		(getwidth()-img_background->getwidth())/2,
-		(getheight()-img_background->getheight())/2,
-		img_background->getwidth(),
-		img_background->getheight()
-	};
+	Rect rect_dst;
+	if (!CollisionManager::instance()->get_is_coolided_each_frame()) {
+		rect_dst = {
+			(getwidth() - img_background->getwidth()) / 2,
+			(getheight() - img_background->getheight()) / 2,
+			img_background->getwidth(),
+			img_background->getheight()
+		};
+	}
+	else {
+		rect_dst = {
+			(getwidth() - img_background->getwidth()) / 2 + (int)CollisionManager::instance()->get_shake_camera().get_position().x,
+			(getheight() - img_background->getheight()) / 2 + (int)CollisionManager::instance()->get_shake_camera().get_position().y,
+			img_background->getwidth(),
+			img_background->getheight()
+		};
+	}
 	putimage_ex(img_background, &rect_dst);
 }
 
@@ -30,11 +43,15 @@ static void draw_remain_hp(){
 	}
 }
 
+int x = 0;
 static void draw_enemy_hp() {
 	RECT rect_hp = { 340,90,940,130 };
 	rectangle(rect_hp.left, rect_hp.top, rect_hp.right, rect_hp.bottom);
 	setfillcolor(RGB(209, 18, 18));
-	RECT rect_hp_remain = { 340,90,340 + 60 * CharacterManager::instance()->get_enemy()->get_hp(), 130 };
+	int sum_hp = 600;
+	if (x == 0)
+		x = sum_hp / CharacterManager::instance()->get_enemy()->get_hp();
+	RECT rect_hp_remain = { 340,90,340 + x * CharacterManager::instance()->get_enemy()->get_hp(), 130 };
 	solidrectangle(rect_hp_remain.left, rect_hp_remain.top, rect_hp_remain.right, rect_hp_remain.bottom);
 }
 
@@ -76,7 +93,13 @@ int main(int argc,char** argv) {
 		float scaled_delta = BulletTimeManager::instance()->on_update(delta.count());
 		CharacterManager::instance()->on_update(scaled_delta);
 		CollisionManager::instance()->process_collide();
-
+		/*if (CollisionManager::instance()->get_is_coolided_each_frame()) {
+			CollisionManager::instance()->get_shake_camera().on_update(scaled_delta);
+			if (!CollisionManager::instance()->get_shake_camera().get_is_shaking()) {
+				CollisionManager::instance()->set_is_coolided_each_frame(false);
+			}
+		}*/
+		
 		setbkcolor(RGB(0,0,0));
 		cleardevice();
 

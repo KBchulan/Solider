@@ -17,6 +17,10 @@ public:
 
 	void decrease_hp();
 
+	void set_hp(int hp) {
+		this->hp = hp;
+	}
+
 	int get_hp()const {
 		return hp;
 	}

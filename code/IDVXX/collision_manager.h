@@ -1,6 +1,7 @@
 #ifndef _COLLISION_MANAGER_H_
 #define _COLLISION_MANAGER_H_
 
+#include "camera.h"
 #include "collision_box.h"
 
 #include <vector>
@@ -14,6 +15,14 @@ public:
 
 	void process_collide();
 	void on_debug_render();
+	
+	bool get_is_coolided_each_frame() const;
+	void set_is_coolided_each_frame(bool is_coolided_each_frame);
+	Camera& get_shake_camera();
+
+private:
+	Camera shake_camera;
+	bool is_coolided_each_frame = false;
 
 private:
 	static CollisionManager* manager;

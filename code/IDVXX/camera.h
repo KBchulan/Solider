@@ -7,6 +7,7 @@
 class Camera {
 public:
 	Camera() {
+		timer_shake.set_wait_time(0.05f);
 		timer_shake.set_one_shot(true);
 		timer_shake.set_on_timeout([&]() {
 			is_shaking = false;
@@ -36,10 +37,14 @@ public:
 		timer_shake.on_update(delta);
 		if (is_shaking) {
 			position.x = (-50 + rand() % 100) / 50.0f * shaking_strlength;
-			position.y = (-50 + rand() % 100) / 50.0f * shaking_strlength;
+			//position.y = (-50 + rand() % 100) / 50.0f * shaking_strlength;
 		}
 	}
 
+
+	bool get_is_shaking()const {
+		return is_shaking;
+	}
 
 private:
 	Vector2 position;

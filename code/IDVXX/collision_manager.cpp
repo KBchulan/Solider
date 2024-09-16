@@ -23,6 +23,18 @@ void CollisionManager::destroy_collision_box(CollisionBox* collision_box){
 	delete collision_box;
 }
 
+bool CollisionManager::get_is_coolided_each_frame()const {
+	return is_coolided_each_frame;
+}
+
+void CollisionManager::set_is_coolided_each_frame(bool is_coolided_each_frame) {
+	this->is_coolided_each_frame = is_coolided_each_frame;
+}
+
+Camera& CollisionManager::get_shake_camera() {
+	return shake_camera;
+}
+
 void CollisionManager::process_collide() {
 	for (CollisionBox* collision_box_src : collision_box_list) {
 		if (!collision_box_src->enabled || collision_box_src->layer_dst == CollisionLayer::None)
@@ -44,8 +56,11 @@ void CollisionManager::process_collide() {
 					collision_box_dst->position.y - collision_box_dst->size.y / 2)
 				<= collision_box_src->size.y + collision_box_dst->size.y);
 
-			if (is_collide_x && is_collide_y && collision_box_dst->on_collide)
+			if (is_collide_x && is_collide_y && collision_box_dst->on_collide) {
 				collision_box_dst->on_collide();
+				is_coolided_each_frame = true;
+				shake_camera.shake(2, 350.f);
+			}
 		}
 	}
 }

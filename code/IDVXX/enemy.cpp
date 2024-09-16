@@ -7,6 +7,7 @@
 Enemy::Enemy() {
 	is_facing_left = true;
 	position = { 1050,200 };
+	set_hp(10);
 	logic_height = 150;
 
 	hit_box->set_size({ 50,80 });

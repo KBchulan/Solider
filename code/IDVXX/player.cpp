@@ -7,6 +7,7 @@
 
 Player::Player() {
 	is_facing_left = false;
+	set_hp(3);
 	position = { 250,200 };
 	logic_height = 120;
 
