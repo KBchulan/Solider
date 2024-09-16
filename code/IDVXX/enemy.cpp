@@ -13,9 +13,9 @@ Enemy::Enemy() {
 	hurt_box->set_size({ 100,180 });
 
 	hit_box->set_layer_src(CollisionLayer::None);
-	hurt_box->set_layer_src(CollisionLayer::Player);
+	hurt_box->set_layer_src(CollisionLayer::Enemy);
 	
-	hit_box->set_layer_dst(CollisionLayer::Enemy);
+	hit_box->set_layer_dst(CollisionLayer::Player);
 	hurt_box->set_layer_dst(CollisionLayer::None);
 
 	hurt_box->set_on_collide(

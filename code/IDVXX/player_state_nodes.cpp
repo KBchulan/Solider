@@ -55,7 +55,7 @@ void PlayerAttackState::on_update(float delta){
 void PlayerAttackState::on_exit() {
 	Player* player = (Player*)CharacterManager::instance()->get_player();
 	player->get_hit_box()->set_enabled(false);
-	// player->set_attacking(false);
+	player->set_attacking(false);
 }
 
 void PlayerAttackState::update_hit_box_position() {

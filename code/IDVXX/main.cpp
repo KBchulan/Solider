@@ -30,6 +30,14 @@ static void draw_remain_hp(){
 	}
 }
 
+static void draw_enemy_hp() {
+	RECT rect_hp = { 340,90,940,130 };
+	rectangle(rect_hp.left, rect_hp.top, rect_hp.right, rect_hp.bottom);
+	setfillcolor(RGB(209, 18, 18));
+	RECT rect_hp_remain = { 340,90,340 + 60 * CharacterManager::instance()->get_enemy()->get_hp(), 130 };
+	solidrectangle(rect_hp_remain.left, rect_hp_remain.top, rect_hp_remain.right, rect_hp_remain.bottom);
+}
+
 int main(int argc,char** argv) {
 	using namespace std::chrono;
 
@@ -76,6 +84,7 @@ int main(int argc,char** argv) {
 		CharacterManager::instance()->on_render();
 		//CollisionManager::instance()->on_debug_render();
 		draw_remain_hp();
+		draw_enemy_hp();
 
 		FlushBatchDraw();
 

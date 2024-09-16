@@ -5,7 +5,6 @@
 #include "sword.h"
 #include "character.h"
 
-
 class Enemy : public Character {
 public:
 	Enemy();
