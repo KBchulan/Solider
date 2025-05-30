@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36109.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Solider", "Solider\Solider.vcxproj", "{61D20582-CEDA-4D79-AC97-5128407FB552}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Solider", "output\Solider\Solider.vdproj", "{41B23738-FED7-E03D-FF4A-F44FEEF447F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61D20582-CEDA-4D79-AC97-5128407FB552}.Debug|x64.ActiveCfg = Debug|x64
+		{61D20582-CEDA-4D79-AC97-5128407FB552}.Debug|x64.Build.0 = Debug|x64
+		{61D20582-CEDA-4D79-AC97-5128407FB552}.Debug|x86.ActiveCfg = Debug|Win32
+		{61D20582-CEDA-4D79-AC97-5128407FB552}.Debug|x86.Build.0 = Debug|Win32
+		{61D20582-CEDA-4D79-AC97-5128407FB552}.Release|x64.ActiveCfg = Release|x64
+		{61D20582-CEDA-4D79-AC97-5128407FB552}.Release|x64.Build.0 = Release|x64
+		{61D20582-CEDA-4D79-AC97-5128407FB552}.Release|x86.ActiveCfg = Release|Win32
+		{61D20582-CEDA-4D79-AC97-5128407FB552}.Release|x86.Build.0 = Release|Win32
+		{41B23738-FED7-E03D-FF4A-F44FEEF447F5}.Debug|x64.ActiveCfg = Debug
+		{41B23738-FED7-E03D-FF4A-F44FEEF447F5}.Debug|x86.ActiveCfg = Debug
+		{41B23738-FED7-E03D-FF4A-F44FEEF447F5}.Release|x64.ActiveCfg = Release
+		{41B23738-FED7-E03D-FF4A-F44FEEF447F5}.Release|x86.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A30C29CD-9D94-4D49-8870-0A1DDCED5855}
+	EndGlobalSection
+EndGlobal
